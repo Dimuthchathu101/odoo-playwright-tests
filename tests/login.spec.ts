@@ -1,10 +1,24 @@
-import { test, expect, chromium } from '@playwright/test';
 
-test('get started link', async () => {
-  const browser = await chromium.launch({ headless: false}); // 1000ms delay
-  const context = await browser.newContext();
-  const page = await context.newPage();
-  await page.goto('https://dimuthcbandara97.odoo.com/web/login?redirect=%2Fodoo%3F');
-  // Additional test steps...
-  await browser.close();
+const { test } = require('@playwright/test');
+const { LoginPage } = require('../pages/loginPage/loginPage');
+require('dotenv').config();
+
+test.describe('Odoo Demo Login Tests', () => {
+  test('Valid User Login', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+  
+    const username = process.env.ODOO_USERNAME;
+    const password = process.env.ODOO_PASSWORD;
+  
+    await loginPage.login(username, password);
+    await loginPage.verifyLogin();
+  });
+
+  test('Invalid User Login', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    await loginPage.login('invalid_user', 'invalid_password');
+  });
+
 });
