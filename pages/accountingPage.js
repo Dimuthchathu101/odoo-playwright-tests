@@ -9,7 +9,6 @@ class AccountingPage {
 
   // customer Invoices
     this.newCustomerInvocie = page.locator("//button[@class='btn btn-primary oe_kanban_action'][normalize-space()='New']");
-    this.customerInvoiceName = page.locator("//input[@id='name_0']");
 
 
 
@@ -34,8 +33,9 @@ class AccountingPage {
     await this.newCustomerInvocie.click()
   }
 
-  async enterCustomerInvoiceName (invoiceName){
-    await this.customerInvoiceName.fill(invoiceName)
+  async enterCustomerName() {
+  await page.getByRole('combobox', { name: 'Customer' }).fill('Dimuth');
+  await page.getByRole('option', { name: 'Dimuth C Bandara' }).click();
   }
 
 

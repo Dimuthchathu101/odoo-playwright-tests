@@ -10,7 +10,7 @@ class LoginPage {
   }
 
   async goto() {
-    await this.page.goto('https://dimuthcbandara97.odoo.com/web/login?redirect=%2Fodoo%3F');
+    await this.page.goto('https://dimuthcbandara97.odoo.com/web/login');
   }
 
   async login(username, password) {
