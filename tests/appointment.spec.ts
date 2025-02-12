@@ -1,11 +1,21 @@
-import { test, expect } from '@playwright/test';
+
+import { test, BrowserContext, Page } from '@playwright/test';
+import { LoginPage } from '../pages/loginPage';
+let context: BrowserContext;
+let page: Page;
+let loginPage: LoginPage;
+require('dotenv').config();
+
+const username = process.env.ODOO_USERNAME!;
+const password = process.env.ODOO_PASSWORD!;
 
 test('test', async ({ page }) => {
+    
   await page.goto('https://dimuthcbandara97.odoo.com/web/login');
   await page.getByRole('textbox', { name: 'Email' }).click();
-  await page.getByRole('textbox', { name: 'Email' }).fill('dimuthcbandara97@gmail.com');
+  await page.getByRole('textbox', { name: 'Email' }).fill(username);
   await page.getByRole('textbox', { name: 'Password Reset Password' }).click();
-  await page.getByRole('textbox', { name: 'Password Reset Password' }).fill('abcd1234idcb');
+  await page.getByRole('textbox', { name: 'Password Reset Password' }).fill(password);
   await page.getByRole('button', { name: 'Log in' }).click();
   await page.goto('https://dimuthcbandara97.odoo.com/odoo');
   await page.getByRole('option', { name: 'Appointments' }).click();
