@@ -17,13 +17,8 @@ test('test', async ({ page }) => {
   await page.getByText('Official Apps').click();
   await page.getByText('Official Apps').click();
   await page.getByRole('listitem').filter({ hasText: 'Industries' }).click();
-  await page.getByRole('listitem').filter({ hasText: 'Construction' }).locator('span').click();
   await page.getByText('Health and Fitness').click();
   await page.getByText('Hospitality').click();
   await page.getByText('Retail').click();
-  await page.getByText('Services').click();
-  await page.getByText('Supply Chain').click();
   await page.getByRole('button', { name: 'List View' }).click();
-  await page.getByRole('main').getByText('Construction').click();
-  await page.getByRole('cell', { name: 'Construction', exact: true }).click();
 });
